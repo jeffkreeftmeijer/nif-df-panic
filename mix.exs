@@ -7,6 +7,7 @@ defmodule DiskUsage.MixProject do
       version: "0.1.0",
       elixir: "~> 1.11-dev",
       start_permanent: Mix.env() == :prod,
+      rustler_crates: [disk_usage: []],
       compilers: [:rustler] ++ Mix.compilers(),
       deps: deps()
     ]
