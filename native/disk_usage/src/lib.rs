@@ -1,5 +1,5 @@
 use rustler::{Encoder, Env, Error, Term};
-//use probes::*;
+use std::process::Command;
 
 mod atoms {
     rustler::rustler_atoms! {
@@ -27,5 +27,9 @@ fn add<'a>(env: Env<'a>, args: &[Term<'a>]) -> Result<Term<'a>, Error> {
 }
 
 fn read<'a>(env: Env<'a>, _args: &[Term<'a>]) -> Result<Term<'a>, Error> {
-    Ok(atoms::ok().encode(env))
+    let output = Command::new("df").arg("-l").output().expect("failed");
+
+    println!("status: {}", output.status);
+
+    Ok((atoms::ok()).encode(env))
 }
