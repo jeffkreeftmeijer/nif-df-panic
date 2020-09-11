@@ -1,4 +1,5 @@
 use rustler::{Encoder, Env, Error, Term};
+//use probes::*;
 
 mod atoms {
     rustler::rustler_atoms! {
@@ -12,7 +13,8 @@ mod atoms {
 rustler::rustler_export_nifs! {
     "Elixir.DiskUsage",
     [
-        ("add", 2, add)
+        ("add", 2, add),
+        ("read", 0, read)
     ],
     None
 }
@@ -22,4 +24,8 @@ fn add<'a>(env: Env<'a>, args: &[Term<'a>]) -> Result<Term<'a>, Error> {
     let num2: i64 = args[1].decode()?;
 
     Ok((atoms::ok(), num1 + num2).encode(env))
+}
+
+fn read<'a>(env: Env<'a>, _args: &[Term<'a>]) -> Result<Term<'a>, Error> {
+    Ok(atoms::ok().encode(env))
 }
