@@ -1,18 +1,6 @@
 defmodule DiskUsage do
-  @moduledoc """
-  Documentation for `DiskUsage`.
-  """
+  use Rustler, otp_app: :disk_usage
 
-  @doc """
-  Hello world.
-
-  ## Examples
-
-      iex> DiskUsage.hello()
-      :world
-
-  """
-  def hello do
-    :world
+  def read do
   end
 end
